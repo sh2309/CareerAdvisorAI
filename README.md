@@ -2,63 +2,61 @@
 
 **A Machine Learning-Based Career Recommendation System**
 
-Career Advisor AI is a machine learning project that explores how a user's interests, skills, educational background, and qualifications can be used to suggest potential career paths. The project combines text-based feature extraction, a classification model, and an interactive Gradio interface to generate career recommendations.
+Career Advisor AI is a Python-based machine learning project that explores career recommendations using user profile information, including interests, skills, educational background, and qualifications. It combines TF-IDF text feature extraction, a Random Forest classifier, and an interactive Gradio interface to suggest potential career paths.
 
 ## Overview
 
-Choosing a career can be challenging when people have different interests, academic backgrounds, and skill sets. Career Advisor AI aims to make career exploration more accessible by providing recommendations based on information entered by the user.
+Choosing a career can be challenging when individuals have different interests, educational backgrounds, and skill sets. Career Advisor AI demonstrates how machine learning can support career exploration by predicting suitable job-title categories from profile information.
 
-The application processes a user's profile, predicts suitable job-title categories using a trained machine learning pipeline, and presents the top suggested careers along with available job descriptions, sample career-related questions and answers, and alternative recommendations.
+The application processes user profile data, generates career recommendations, and displays available job descriptions and career-related questions and answers when matching records are found.
 
-This project is an educational prototype intended to demonstrate the application of machine learning to career exploration. Its recommendations should not be treated as definitive career assessments.
+This project is an educational prototype. Its recommendations are not validated career assessments and should not be treated as definitive guidance.
 
 ## Key Features
 
-- **Profile-based recommendations:** Uses interests, skills, education, specialization, and certification information as text inputs for career prediction.
-- **Machine learning pipeline:** Combines TF-IDF text vectorization with a Random Forest classifier.
-- **Multiple career suggestions:** Displays up to three predicted career categories.
-- **Career information:** Retrieves matching job descriptions from the supplied career-description dataset when a match is available.
-- **Career-related Q&A:** Displays sample questions and answers associated with the recommended role when matching records exist.
-- **Interactive interface:** Uses Gradio to provide a form-based interface for entering profile information and viewing recommendations.
-- **Modular data sources:** Uses separate datasets for career-related Q&A, user profiles, MI scores, and job descriptions.
+* **Profile-Based Recommendations:** Uses available profile information to predict potential career paths.
+* **Machine Learning Pipeline:** Combines TF-IDF vectorization with a Random Forest classifier.
+* **Multiple Recommendations:** Displays up to three predicted career categories.
+* **Career Information:** Retrieves matching job descriptions from the supplied dataset.
+* **Career-Related Q&A:** Displays relevant sample questions and answers when available.
+* **Interactive Interface:** Uses Gradio for profile input and recommendation display.
+* **Multiple Data Sources:** Includes datasets for user profiles, career descriptions, career-related Q&A, and MI scores.
 
 ## Technologies Used
 
-| Technology | Purpose |
-|---|---|
-| Python | Main programming language |
-| Pandas | Data loading and preprocessing |
-| NumPy | Numerical operations and prediction ranking |
-| Scikit-learn | TF-IDF vectorization, label encoding, train/test splitting, and Random Forest classification |
-| Gradio | Interactive application interface |
-| OpenPyXL | Reading Excel datasets |
-| Google Colab | Notebook execution environment |
-| pyngrok | Optional public tunnel to the running application |
+| Technology   | Purpose                                               |
+| ------------ | ----------------------------------------------------- |
+| Python       | Core programming language                             |
+| Pandas       | Data loading and preprocessing                        |
+| NumPy        | Numerical operations                                  |
+| Scikit-learn | TF-IDF vectorization and Random Forest classification |
+| Gradio       | Interactive user interface                            |
+| OpenPyXL     | Reading Excel datasets                                |
+| Google Colab | Notebook execution environment                        |
+| pyngrok      | Optional public tunnel for the application            |
 
 ## How It Works
 
-1. **Data loading:** Loads the four supplied CSV and Excel datasets.
-2. **Profile preparation:** Uses the user-profile dataset to combine selected profile fields into a single text representation. Job titles are normalized and encoded into numeric labels.
-3. **Feature extraction:** TF-IDF converts the combined profile text into numerical features.
-4. **Model training:** A Random Forest classifier learns to predict job-title categories from the prepared profile data.
-5. **Career prediction:** The application processes a submitted profile and ranks the predicted career categories.
-6. **Supporting information:** The application searches the career-description and Q&A datasets for information matching the top recommendation.
-7. **Result display:** Gradio displays the recommendation and any available supporting information.
+1. **Data Loading:** Loads the supplied CSV and Excel datasets.
+2. **Profile Preparation:** Combines selected profile fields into a text representation and encodes job-title labels.
+3. **Feature Extraction:** Converts profile text into numerical features using TF-IDF.
+4. **Model Training:** Trains a Random Forest classifier to predict job-title categories.
+5. **Career Prediction:** Generates and ranks potential career recommendations for the submitted profile.
+6. **Supporting Information:** Searches the career-description and Q&A datasets for matching records.
+7. **Result Display:** Presents recommendations and available supporting information through Gradio.
 
-The current implementation uses a train/test split with a fixed random seed. A comprehensive evaluation of model performance is still required before making claims about predictive accuracy.
+The notebook uses a train/test split with a fixed random seed. Comprehensive model evaluation is still required before making claims about predictive accuracy.
 
 ## Dataset Descriptions
 
-The project contains four datasets:
+| File            | Purpose                                                             |
+| --------------- | ------------------------------------------------------------------- |
+| `Dataset1.csv`  | Career-related questions and answers                                |
+| `Dataset2.csv`  | User profiles and job-title labels; primary training dataset        |
+| `Dataset3.xlsx` | MI scores; loaded but not currently used in the prediction pipeline |
+| `Dataset4.xlsx` | Career and job descriptions                                         |
 
-| File | Purpose | Current usage |
-|---|---|---|
-| `Dataset1.csv` | Career-related questions and answers | Retrieves sample Q&A matching the recommended role |
-| `Dataset2.csv` | User profiles and job-title labels | Primary dataset used to prepare training examples |
-| `Dataset3.xlsx` | MI scores dataset | Loaded by the notebook but not used in the current prediction pipeline |
-| `Dataset4.xlsx` | Career and job descriptions | Retrieves additional information about a recommended career |
-
-**Data note:** Dataset availability, ownership, licensing, and redistribution permissions should be verified before publishing the files publicly. Do not commit personal or confidential information.
+**Data note:** Verify dataset ownership, licensing, privacy, and redistribution permissions before publishing files in a public repository.
 
 ## Project Structure
 
@@ -71,29 +69,31 @@ CareerAdvisorAI/
 ├── Dataset2.csv
 ├── Dataset3.xlsx
 ├── Dataset4.xlsx
-└── screenshots/              # Optional
+└── screenshots/
     ├── home.png
     └── career-recommendation.png
 ```
+
+The `screenshots/` folder is optional and should only be included if screenshots are added.
 
 ## Installation and Setup
 
 ### Prerequisites
 
-- A GitHub account to access the repository.
-- A Google account to run the notebook in Google Colab.
-- Permission to access and use the project datasets.
+* Python environment or Google Colab
+* Access to the project datasets
+* Git, to clone the repository
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/sh2309/CareerAdvisorAI.git
 cd CareerAdvisorAI
 ```
 
-### 2. Install dependencies
+### 2. Install Dependencies
 
-For a local Python environment, create and activate a virtual environment, then install the listed packages.
+For local execution, create and activate a virtual environment:
 
 ```bash
 python -m venv .venv
@@ -106,71 +106,67 @@ On Windows PowerShell:
 python -m pip install -r requirements.txt
 ```
 
-The current notebook imports `google.colab.userdata`, so it is designed for Google Colab and will not run unchanged in a standard local Python environment. Local execution requires adapting the Colab-specific code and configuring the application launch process.
+**Note:** The current notebook imports `google.colab.userdata`, so it is designed for Google Colab. Running it locally may require changes to Colab-specific code and application launch configuration.
 
-### 3. Open the notebook in Google Colab
-
-Open `main.ipynb` from the repository and select **Open in Colab**, if available. Alternatively, use the following link after the notebook has been moved to the repository root:
+### 3. Open in Google Colab
 
 [Open Career Advisor AI in Google Colab](https://colab.research.google.com/github/sh2309/CareerAdvisorAI/blob/main/main.ipynb)
 
-### 4. Make the datasets available
+### 4. Prepare the Datasets
 
-Ensure all four dataset files are present in the notebook's working directory in Colab before running the data-loading cells. Download or upload the files as needed, subject to their usage permissions.
+Ensure the required CSV and Excel files are accessible from the notebook's working directory before running the data-loading cells.
 
-### 5. Configure the optional ngrok tunnel
+### 5. Configure ngrok (Optional)
 
-The notebook uses Google Colab Secrets to retrieve an ngrok authentication token.
+If the notebook uses ngrok to expose the Gradio interface:
 
-1. Obtain an ngrok authentication token from your ngrok account.
-2. In Google Colab, open the Secrets panel.
-3. Add a secret named `NGROK_AUTH_TOKEN`.
-4. Enable notebook access to that secret.
-5. Run the notebook cells in order.
+1. Obtain an authentication token from your ngrok account.
+2. Add it to Google Colab Secrets as `NGROK_AUTH_TOKEN`.
+3. Allow the notebook to access the secret.
+4. Run the relevant notebook cells.
 
-Never hard-code your token in the notebook, commit it to GitHub, or include it in screenshots or notebook outputs. The public URL generated by ngrok is temporary and should not be treated as a permanent deployment.
+Never hard-code authentication tokens or commit secrets to GitHub. An ngrok URL is temporary and is not a permanent deployment.
 
-## How to Run the Application
+## How to Run
 
 1. Open `main.ipynb` in Google Colab.
-2. Ensure the four datasets are accessible from the notebook's working directory.
-3. Run the dependency-installation and import cells.
-4. Run the dataset-loading and preprocessing cells.
-5. Train the machine learning pipeline.
-6. Run the career prediction function and Gradio interface cells.
-7. Enter sample profile information and review the generated recommendations.
-8. If using ngrok, configure the required secret before launching the tunnel.
+2. Make sure the datasets are available.
+3. Run the dependency installation and import cells.
+4. Execute the data-loading and preprocessing cells.
+5. Train the machine learning model.
+6. Launch the Gradio interface.
+7. Enter a sample profile and review the recommendations.
 
-Use fictional sample profiles when demonstrating the application publicly.
+Use fictional profile data when demonstrating the application publicly.
 
 ## Limitations
 
-- The current model depends on the quality, size, and representativeness of the supplied user-profile dataset.
-- Career recommendations reflect learned associations in the training data and may not generalize to every user.
-- Predictive accuracy has not been established through a complete evaluation in the current notebook.
-- Some form fields are collected but are not currently used in the prediction function. The implementation should be reviewed so that the interface accurately reflects the model's behavior.
-- The MI scores dataset is loaded but is not currently integrated into the prediction pipeline.
-- Career descriptions and Q&A entries are only displayed when matching records are found.
-- The current implementation relies on Google Colab-specific functionality and an optional ngrok tunnel rather than a permanent production deployment.
-- The system should not be used as the sole basis for education, recruitment, or career decisions.
+* Model performance depends on the quality and representativeness of the training data.
+* Predictive accuracy has not been established through a complete evaluation.
+* Some profile fields may be collected by the interface but are not currently used by the prediction function.
+* The MI scores dataset is loaded but is not integrated into the current prediction pipeline.
+* Career descriptions and Q&A results depend on matching records being available.
+* The notebook relies on Google Colab-specific functionality and may require adaptation for local execution.
+* Recommendations should not be the sole basis for education, recruitment, or career decisions.
 
 ## Future Improvements
 
-- Evaluate the model using appropriate classification metrics and a documented test set.
-- Compare alternative models and tune hyperparameters using a suitable validation strategy.
-- Review class imbalance and the number of training examples available for each job category.
-- Incorporate additional profile fields only when their relevance and treatment are justified.
-- Improve recommendation explanations and handle missing or unmatched career descriptions gracefully.
-- Integrate the MI scores dataset if its methodology, licensing, and relevance are verified.
-- Adapt the application for a reproducible local environment or a secure, permanent deployment.
-- Add automated tests, clearer error handling, and privacy-conscious input handling.
+* Evaluate the model using appropriate classification metrics and a separate test set.
+* Compare alternative classifiers and tune model parameters.
+* Review class imbalance and the number of examples for each career category.
+* Improve recommendation explanations and handling of missing data.
+* Integrate the MI scores dataset if its methodology and relevance are verified.
+* Support reproducible local execution and secure deployment.
+* Add automated tests, error handling, and privacy-conscious input processing.
 
 ## Credits and Acknowledgements
 
-This project was developed as a machine learning and career-exploration project using Python and open-source libraries.
-
-Dataset creators, original project collaborators, and other contributors should be acknowledged here once their names and contributions have been verified. Dataset sources and applicable licences should also be documented.
+This project demonstrates the application of Python, machine learning, and open-source libraries to career exploration. Add verified contributor details, dataset sources, and applicable licences where appropriate.
 
 ## Disclaimer
 
-Career Advisor AI is an educational prototype. Its outputs are suggestions generated from the available training data and should not be interpreted as guaranteed outcomes, professional career counselling, or validated psychometric assessments.
+Career Advisor AI is an educational prototype. Its outputs are data-driven suggestions, not guaranteed career outcomes, professional career counselling, or validated psychometric assessments.
+
+## License
+
+Add a `LICENSE` file specifying the licence under which this project may be used and distributed.
